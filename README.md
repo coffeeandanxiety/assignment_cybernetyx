@@ -70,8 +70,11 @@ async def query_documents(query: str):
     results = chroma_client.query("documents", query_embedding)
     return {"results": results}
 
-![image](https://github.com/user-attachments/assets/78cc2767-095c-466d-9e4f-021be24c8b99)
+![Screenshot 2024-11-07 081903](https://github.com/user-attachments/assets/bd9e98a4-84ae-4db0-8219-8a6b215daa8a)
 
+
+
+![image](https://github.com/user-attachments/assets/78cc2767-095c-466d-9e4f-021be24c8b99)
 
 # 5. run fastAPI using uvicorn :
 import nest_asyncio
