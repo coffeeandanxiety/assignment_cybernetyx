@@ -15,6 +15,8 @@ ngrok.set_auth_token(NGROK_AUTH_TOKEN)
 public_url = ngrok.connect(8000)
 print("Public URL:", public_url)
 
+![Screenshot 2024-11-07 081339](https://github.com/user-attachments/assets/3e41c1b3-0db8-4f27-87a2-e12ddffd1ae4)
+
 3. # implimenting the fastAPI code :
 # 3.1. Import Necessary Libraries and Configure ChromaDB and Embedding Model
 !pip install chromadb # install chromadb
@@ -34,6 +36,8 @@ embedding_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", 
 from chromadb.config import Settings
 chroma_client = chromadb.Client(Settings(persist_directory="/content/chroma_storage")) # Use chromadb.Client to create the client
 
+![image](https://github.com/user-attachments/assets/f45e747c-e8b9-4a82-aef1-60f323b4e5e3)
+
 #3. 2. defining utilities for file processing :
 async def extract_text(file: UploadFile):
     # Handle different file types
@@ -46,6 +50,9 @@ async def extract_text(file: UploadFile):
     elif file.filename.endswith(".txt"):
         text = (await file.read()).decode("utf-8")
     return text
+
+![Screenshot 2024-11-07 081432](https://github.com/user-attachments/assets/21efa319-9332-468f-bbe9-3c9a91f279c0)
+
 
 # 4.Create FastAPI Endpoints for Document Ingestion and Querying:
 !pip install python-multipart 
@@ -62,6 +69,9 @@ async def query_documents(query: str):
     query_embedding = embedding_model.encode(query)
     results = chroma_client.query("documents", query_embedding)
     return {"results": results}
+
+![image](https://github.com/user-attachments/assets/78cc2767-095c-466d-9e4f-021be24c8b99)
+
 
 # 5. run fastAPI using uvicorn :
 import nest_asyncio
